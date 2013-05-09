@@ -72,7 +72,7 @@ class MediaStreamInfo(object):
       * sample_aspect_ratio - SAR of video stream
       * display_aspect_ratio - DAR of video stream
       * profile - H.264 profile (e.g. "high", "main", "baseline")
-      * level - H.264 level (e.g. "3.0", "3.1")
+      * level - H.264 level (e.g. "30", "31")
     Audio-specific attributes are:
       * audio_channels - the number of channels in the stream
       * audio_samplerate - sample rate (Hz)
@@ -161,7 +161,7 @@ class MediaStreamInfo(object):
             elif key == 'profil':
                 self.profile = val
             elif key == 'level':
-                self.level = self.parse_float(val)
+                self.level = val
 
     def __repr__(self):
         d = ''
@@ -170,7 +170,7 @@ class MediaStreamInfo(object):
                 self.codec, self.audio_channels,
                 self.audio_samplerate)
         elif self.type == 'video':
-            d = 'type=%s, codec=%s, width=%d, height=%d, fps=%.1f sar=%s dar=%s profile=%s level=%.1f' % (
+            d = 'type=%s, codec=%s, width=%d, height=%d, fps=%.1f sar=%s dar=%s profile=%s level=%s' % (
                 self.type, self.codec, self.video_width, self.video_height,
                 self.video_fps, self.sample_aspect_ratio, self.display_aspect_ratio,
                 self.profile, self.level)
