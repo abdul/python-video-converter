@@ -85,6 +85,11 @@ class MediaStreamInfo(object):
         self.video_fps = None
         self.audio_channels = None
         self.audio_samplerate = None
+        self.profile = None
+        self.sample_aspect_ratio = None
+        self.display_aspect_ratio = None
+        self.level = None
+        self.start_time = None
 
     @staticmethod
     def parse_float(val, default=0.0):
@@ -145,6 +150,14 @@ class MediaStreamInfo(object):
                         self.video_fps = float(n) / float(d)
                 elif '.' in val:
                     self.video_fps = self.parse_float(val)
+            if key == 'sample_aspect_ratio':
+                self.sample_aspect_ratio = val
+            elif key == 'display_aspect_ratio':
+                self.display_aspect_ratio = val
+            elif key == 'profil':
+                self.profile = val
+            elif key == 'level':
+                self.level = self.parse_float(val)
 
     def __repr__(self):
         d = ''
@@ -153,9 +166,10 @@ class MediaStreamInfo(object):
                 self.codec, self.audio_channels,
                 self.audio_samplerate)
         elif self.type == 'video':
-            d = 'type=%s, codec=%s, width=%d, height=%d, fps=%.1f' % (
+            d = 'type=%s, codec=%s, width=%d, height=%d, fps=%.1f sar=%s dar=%s profile=%s level=%.1f' % (
                 self.type, self.codec, self.video_width, self.video_height,
-                self.video_fps)
+                self.video_fps, self.sample_aspect_ratio, self.display_aspect_ratio,
+                self.profile, self.level)
         return 'MediaStreamInfo(%s)' % d
 
 
