@@ -69,6 +69,10 @@ class MediaStreamInfo(object):
       * video_width - width of video in pixels
       * video_height - height of video in pixels
       * video_fps - average frames per second
+      * sample_aspect_ratio - SAR of video stream
+      * display_aspect_ratio - DAR of video stream
+      * profile - H.264 profile (e.g. "high", "main", "baseline")
+      * level - H.264 level (e.g. "3.0", "3.1")
     Audio-specific attributes are:
       * audio_channels - the number of channels in the stream
       * audio_samplerate - sample rate (Hz)
